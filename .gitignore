@@ -1,5 +1,7 @@
 .DS_Store
 
+/release-builds
+
 # Logs
 logs
 *.log
