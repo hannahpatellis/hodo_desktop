@@ -1,0 +1,20 @@
+{
+  "name": "hodo_desktop",
+  "productName": "HoDO Desktop",
+  "version": "1.0.0",
+  "description": "Desktop client for the HoDO backend dashboard",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/appicn.icns --prune=true --out=release-builds"
+  },
+  "author": "Alexandria 'Hannah' Isadora Patellis",
+  "devDependencies": {
+    "electron": ">=1.8.2-beta5",
+    "electron-packager": "^13.1.1"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "jquery": "^3.4.1"
+  }
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>HoDO Desktop</title>
+  <!-- CSS Normalize and Reset -->
+  <link rel="stylesheet" href="./assets/css/normalize.css" />
+  <!-- Semantic - Local -->
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+  <!-- Custom CSS styles file -->
+  <link rel="stylesheet" href="./assets/css/custom.css" />
+</head>
+
+<body>
+  <div class="container-fluid">
+    
+    <div id="exit-icon-wrap"><a href="#" id="exit-icon">✖️</a></div>
+
+    <div class="row x-top-row">
+      <div class="col-12">
+        <img src="assets/img/hodo.png" width="250px" />
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <div class="card p-2">
+          <div class="row">
+            <div class="col-4">
+              <img src="assets/img/aesthetics.png" width="100%" />
+            </div>
+            <div class="col-8">
+              <p>Aesthetics: <strong>0</strong> / <strong>0</strong></p>
+              <hr />
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary" type="button">-1</button>
+                  <button class="btn btn-outline-secondary" type="button">+1</button>
+                </div>
+                <input type="text" class="form-control" placeholder="0" aria-label="Number of points to add" />
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const { remote } = require('electron');
+    window.$ = window.jQuery = require('jquery');
+    const axios = require('axios');
+    const fs = require('fs');
+    const path = require('path');
+    const homedir = require('os').homedir();
+    
+    let config = {};
+
+    fs.readFile(path.join(homedir, '/config/hodo_desktop.json'), 'utf8', (err, data) => {
+      config = JSON.parse(data);
+      startApp();
+    });
+
+    let data = {}
+
+    const renderPageFromData = data => {
+      // const classes = data.classes;
+      // const curricula = data.curricula;
+      // const subcategories = data.subcategories;
+
+      // classes.forEach((e, i) => {
+      //   let newOption = window.$('<option>');
+      //   newOption.text(e.text);
+      //   newOption.attr('value', e.key);
+      //   window.$('#in-course-code').append(newOption);
+      // });
+
+      // curricula.forEach((e, i) => {
+      //   let newOption = window.$('<option>');
+      //   newOption.text(e.text);
+      //   newOption.attr('value', e.key);
+      //   window.$('#in-curriculum').append(newOption);
+      // });
+
+      // subcategories.forEach((e, i) => {
+      //   let newOption = window.$('<option>');
+      //   newOption.text(e.text);
+      //   newOption.attr('value', e.key);
+      //   window.$('#in-subcategories').append(newOption);
+      // });
+    };
+
+    const startApp = () => {
+      // axios.post(`${config.DOMAINROOT}api/data`, { token: config.TOKEN })
+      //   .then(response => {
+      //     data = response.data;
+      //     renderPageFromData(data);
+      //   }).catch(err => {
+      //     console.error(err);
+      //   });
+    }
+
+    // window.$('#btn-reset').on('click', (e) => {
+    //   e.preventDefault();
+    //   window.$('#in-video-name').val('');
+    //   window.$('#in-date-recorded').val('');
+    //   window.$('#in-unit').val('');
+    //   window.$('#in-lesson').val('');
+    //   window.$('#in-host').val('');
+    //   window.$('#in-url').val('');
+    //   window.$('#in-subcategories option:selected').prop('selected', false);
+    //   window.$('#in-supplemental').prop('checked', false);
+    //   window.$('#btn-submit').attr('disabled', false);
+    // });
+
+    window.$('#btn-submit').on('click', e => {
+      // e.preventDefault();
+
+      // const unit = window.$('#in-supplemental').prop('checked') ? '0' : window.$('#in-unit').val();
+      // const lesson = window.$('#in-supplemental').prop('checked') ? '0' : window.$('#in-lesson').val();
+
+      // if (
+      //   window.$('#in-video-name').val().length > 0 &&
+      //   window.$('#in-date-recorded').val().length === 8 &&
+      //   unit.length > 0 &&
+      //   lesson.length > 0 &&
+      //   window.$('#in-host').val().length > 0 &&
+      //   window.$('#in-url').val().length > 0 &&
+      //   window.$('#in-subcategories').val().length > 0
+      // ) {
+      //   const newEntry = {
+      //     "name": window.$('#in-video-name').val(),
+      //     "date": window.$('#in-date-recorded').val(),
+      //     "unit": parseInt(unit),
+      //     "lesson": parseInt(lesson),
+      //     "host": window.$('#in-host').val().toLowerCase(),
+      //     "url": window.$('#in-url').val(),
+      //     "class": window.$('#in-course-code').val(),
+      //     "curriculum": window.$('#in-curriculum').val(),
+      //     "subcategory": window.$('#in-subcategories').val(),
+      //   };
+
+      //   axios.post(`${config.DOMAINROOT}api/new`, { entry: newEntry, token: config.APIKEY })
+      //     .then(response => {
+      //       if (response.data.success === true) {
+      //         alert('Video added 💾');
+      //       } else if (response.data.success === false) {
+      //         alert(`Oh shit 🤬\n${response.data.error}`);
+      //       } else {
+      //         alert(`Oh double shit 🤬🤬\nUnknown error occured`);
+      //       }
+      //     }).catch(err => {
+      //       alert(`Oh shit 🤬🤬\nCouldn't make the POST request to the server`);
+      //       console.error(err);
+      //     });
+      // } else {
+      //   alert('Make sure to fill out all the fields 🙃');
+      // }
+    });
+
+    window.$('a#exit-icon').on('click', () => {
+      const window = remote.getCurrentWindow();
+      window.close();
+    });
+  </script>
+
+</body>
+</html>
