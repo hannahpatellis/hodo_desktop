@@ -32,16 +32,94 @@
               <img src="assets/img/aesthetics.png" width="100%" />
             </div>
             <div class="col-8">
-              <p>Aesthetics: <strong>0</strong> / <strong>0</strong></p>
+              <p>Aesthetics: <span id="wp-aesthetics">0</span> / <strong id="tp-aesthetics">0</strong></p>
               <hr />
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <button class="btn btn-outline-secondary" type="button">-1</button>
-                  <button class="btn btn-outline-secondary" type="button">+1</button>
+                  <button class="btn btn-outline-secondary point-change" type="button" data-action="neg" data-house="aesthetics">-1</button>
+                  <button class="btn btn-outline-secondary point-change" type="button" data-action="pos" data-house="aesthetics">+1</button>
                 </div>
-                <input type="text" class="form-control" placeholder="0" aria-label="Number of points to add" />
+                <input type="text" class="form-control point-count-aesthetics" placeholder="0" aria-label="Number of points to add" />
                 <div class="input-group-append">
-                  <button class="btn btn-primary" type="button">+</button>
+                  <button class="btn btn-primary point-change" type="button" data-action="count" data-house="aesthetics">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <div class="card p-2">
+          <div class="row">
+            <div class="col-4">
+              <img src="assets/img/context.png" width="100%" />
+            </div>
+            <div class="col-8">
+              <p>Context: <span id="wp-context">0</span> / <strong id="tp-context">0</strong></p>
+              <hr />
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary point-change" type="button" data-action="neg" data-house="context">-1</button>
+                  <button class="btn btn-outline-secondary point-change" type="button" data-action="pos" data-house="context">+1</button>
+                </div>
+                <input type="text" class="form-control point-count-context" placeholder="0" aria-label="Number of points to add" />
+                <div class="input-group-append">
+                  <button class="btn btn-primary point-change" type="button" data-action="count" data-house="context">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <div class="card p-2">
+          <div class="row">
+            <div class="col-4">
+              <img src="assets/img/gestalt.png" width="100%" />
+            </div>
+            <div class="col-8">
+              <p>Gestalt: <span id="wp-gestalt">0</span> / <strong id="tp-gestalt">0</strong></p>
+              <hr />
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary point-change" type="button" data-action="neg" data-house="gestalt">-1</button>
+                  <button class="btn btn-outline-secondary point-change" type="button" data-action="pos" data-house="gestalt">+1</button>
+                </div>
+                <input type="text" class="form-control point-count-gestalt" placeholder="0" aria-label="Number of points to add" />
+                <div class="input-group-append">
+                  <button class="btn btn-primary point-change" type="button" data-action="count" data-house="gestalt">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <div class="card p-2">
+          <div class="row">
+            <div class="col-4">
+              <img src="assets/img/heuristics.png" width="100%" />
+            </div>
+            <div class="col-8">
+              <p>Heuristics: <span id="wp-heuristics">0</span> / <strong id="tp-heuristics">0</strong></p>
+              <hr />
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary point-change" type="button" data-action="neg" data-house="heuristics">-1</button>
+                  <button class="btn btn-outline-secondary point-change" type="button" data-action="pos" data-house="heuristics">+1</button>
+                </div>
+                <input type="text" class="form-control point-count-heuristics" placeholder="0" aria-label="Number of points to add" />
+                <div class="input-group-append">
+                  <button class="btn btn-primary point-change" type="button" data-action="count" data-house="heuristics">+</button>
                 </div>
               </div>
             </div>
@@ -67,60 +145,49 @@
       startApp();
     });
 
-    let data = {}
+    let data = []
 
     const renderPageFromData = data => {
-      // const classes = data.classes;
-      // const curricula = data.curricula;
-      // const subcategories = data.subcategories;
-
-      // classes.forEach((e, i) => {
-      //   let newOption = window.$('<option>');
-      //   newOption.text(e.text);
-      //   newOption.attr('value', e.key);
-      //   window.$('#in-course-code').append(newOption);
-      // });
-
-      // curricula.forEach((e, i) => {
-      //   let newOption = window.$('<option>');
-      //   newOption.text(e.text);
-      //   newOption.attr('value', e.key);
-      //   window.$('#in-curriculum').append(newOption);
-      // });
-
-      // subcategories.forEach((e, i) => {
-      //   let newOption = window.$('<option>');
-      //   newOption.text(e.text);
-      //   newOption.attr('value', e.key);
-      //   window.$('#in-subcategories').append(newOption);
-      // });
+      data.forEach(element => {
+        const house = element.house.toLowerCase();
+        window.$(`#wp-${house}`).html(element.weekpoints);
+        window.$(`#tp-${house}`).html(element.points);
+      });
     };
 
     const startApp = () => {
-      // axios.post(`${config.DOMAINROOT}api/data`, { token: config.TOKEN })
-      //   .then(response => {
-      //     data = response.data;
-      //     renderPageFromData(data);
-      //   }).catch(err => {
-      //     console.error(err);
-      //   });
+      axios.get(`${config.DOMAINROOT}public/points`)
+        .then(response => {
+          data = response.data;
+          console.log(data);
+          renderPageFromData(data);
+        }).catch(err => {
+          console.error(err);
+        });
     }
 
-    // window.$('#btn-reset').on('click', (e) => {
-    //   e.preventDefault();
-    //   window.$('#in-video-name').val('');
-    //   window.$('#in-date-recorded').val('');
-    //   window.$('#in-unit').val('');
-    //   window.$('#in-lesson').val('');
-    //   window.$('#in-host').val('');
-    //   window.$('#in-url').val('');
-    //   window.$('#in-subcategories option:selected').prop('selected', false);
-    //   window.$('#in-supplemental').prop('checked', false);
-    //   window.$('#btn-submit').attr('disabled', false);
-    // });
+    window.$('.point-change').on('click', function(e) {
+      e.preventDefault();
+      const house = window.$(this).attr('data-house');
+      const action = window.$(this).attr('data-action');
+      const pointCount = window.$(`.point-count-${house}`).val();
 
-    window.$('#btn-submit').on('click', e => {
-      // e.preventDefault();
+      console.log(house);
+
+      switch(action) {
+        case 'neg':
+          console.log('neg');
+          break;
+        case 'pos':
+          console.log('pos');
+          break;
+        case 'count':
+          console.log(pointCount);
+          break;
+      }
+      // console.log(house);
+      // console.log(action);
+      // console.log(pointCount);
 
       // const unit = window.$('#in-supplemental').prop('checked') ? '0' : window.$('#in-unit').val();
       // const lesson = window.$('#in-supplemental').prop('checked') ? '0' : window.$('#in-lesson').val();
