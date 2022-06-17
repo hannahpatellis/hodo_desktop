@@ -10,7 +10,7 @@
   },
   "author": "Alexandria 'Hannah' Isadora Patellis",
   "devDependencies": {
-    "electron": ">=1.8.2-beta5",
+    "electron": ">=15.5.5",
     "electron-packager": "^13.1.1"
   },
   "dependencies": {
